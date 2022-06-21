@@ -4,7 +4,7 @@ public class exercicio7 {
         A = 10;
         B = 20;
         System.out.println("Valor de A " + A + " Valor de B " + B);
-
+        
         aux = A;
         A = B;
         B = aux;

@@ -28,7 +28,7 @@ public class exercicio6 {
                 System.out.println("Sad");
             }
             case "Deveria" -> {
-                System.out.println("Shoud");
+                System.out.println("Should");
             }
             case "Poderia" -> {
                 System.out.println("Could");
