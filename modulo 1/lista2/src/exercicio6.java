@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class exercicio6 {
     public static void main(String[] args) {
+        //inicio variaveis
         int[] numeros = {10, 25, 65, 98, 44, 32, 77, 83, 11, 89};
         int num;
         boolean encontrou = false;
@@ -9,7 +10,7 @@ public class exercicio6 {
         
         System.out.println("insira o numero para realizar a busca no vetor: ");
         num = input.nextInt();
-        
+        //loop para verificar se o numero existe no array
         for (int i = 0; i < numeros.length; i++) {
             if (num == numeros[i]) {
                 encontrou = true;
