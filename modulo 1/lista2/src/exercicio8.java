@@ -32,10 +32,9 @@ public class exercicio8 {
                 matriculaMaior = tabelaAlunos[i][MATRICULA];
             }
             mediaFInalAlunos += tabelaAlunos[i][NOTA_FINAL];
-            
         }
         input.close();
         System.out.printf("a matricula do aluno com a maior nota e: %.0f nota: %.2f\n", matriculaMaior, maiorNota);
-        System.out.printf("a media das notas finais de todos os alunos e: %.2f", mediaFInalAlunos);
+        System.out.printf("a media das notas finais de todos os alunos e: %.2f", mediaFInalAlunos / 5);
     }
 }
