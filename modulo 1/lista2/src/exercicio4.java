@@ -12,7 +12,7 @@ public class exercicio4 {
             System.out.printf("digite o numero da posicao %d\n", i);
             numeros[i] = input.nextInt();
             //verifica menor numero e o indice
-            if (menor > numeros[i]) {
+            if (menor >= numeros[i]) {
                 menor = numeros[i];
                 indice = i;
             }
