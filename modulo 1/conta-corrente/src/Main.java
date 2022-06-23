@@ -6,12 +6,11 @@ public class Main {
         contaCorrente1.agencia = 1485;
         contaCorrente1.saldo = 700.00;
         contaCorrente1.chequeEspecial = 500.00;
-    
+        
         Cliente cliente1 = new Cliente();
-        cliente1.nome = "Mário Nelson Nunes";
+        cliente1.nome = "Mario Nelson Nunes";
         cliente1.cpf = "324.258.390-62";
         
-        //ok
         Endereco endereco1 = new Endereco();
         endereco1.tipo = 1;
         endereco1.logradouro = "Rua Três";
@@ -27,10 +26,7 @@ public class Main {
         contato1.telefone = "(13) 99703-2245";
         contato1.tipo = 1;
         
-        //endereco1.imprimirEndereco();
-        //contato1.imprimirContato();
-        //contaCorrente1.imprimirContaCorrente();
-        
+        //-----------------------------------------------------//
         
             //2o Cliente
         ContaCorrente contaCorrente2 = new ContaCorrente();
@@ -43,7 +39,6 @@ public class Main {
         cliente2.nome = "Marcela Eloá Alves";
         cliente2.cpf = "988.185.030-49";
         
-        //ok
         Endereco endereco2 = new Endereco();
         endereco2.tipo = 1;
         endereco2.logradouro = "Rua Sao Marcelo";
@@ -53,28 +48,29 @@ public class Main {
         endereco2.cidade = "Santos";
         endereco2.estado = "Sao Paulo";
         endereco2.pais = "Brasil";
-        // metodo imprimir endereco
         
-        
-        //ok
         Contato contato2 = new Contato();
         contato2.descricao = "Oi?";
         contato2.telefone = "(13) 3942-4661";
         contato2.tipo = 1;
         
-        contaCorrente1.imprimirContaCorrente();
+        //metodos
+    
+        cliente1.enderecos[0] = endereco1;
+        cliente1.enderecos[1] = endereco1;
+        cliente1.contatos[0] = contato1;
+        cliente1.contatos[1] = contato1;
+        cliente1.imprimirCliente();
         
-        contaCorrente1.sacar(100.00);
-        contaCorrente1.imprimirContaCorrente();
-        
-        contaCorrente1.depositar(150.00);
-        contaCorrente1.imprimirContaCorrente();
-        
-        contaCorrente1.transferir(contaCorrente2, 100.00);
-        System.out.println("Saldo atualizado");
+        contaCorrente1.depositar(100.00);
+        contaCorrente1.sacar(250.00);
+        contaCorrente1.transferir(contaCorrente2, 500.00);
         contaCorrente1.imprimirContaCorrente();
     
-        System.out.println("------ Saldo destinatario");
+        System.out.println("---------------------------------------------");
+        
+        System.out.println("------ Dados Destinatario ------");
+        cliente2.imprimirCliente();
         contaCorrente2.imprimirContaCorrente();
     }
 }

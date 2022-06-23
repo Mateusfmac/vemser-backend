@@ -1,14 +1,14 @@
 public class Contato {
     String descricao;
     String telefone;
-    Integer tipo;
+    int tipo;
     
-    void imprimirContato() {//ok
+    void imprimirContato() {
         if (tipo == 1) {
-            System.out.println("Residencial");
+            System.out.println("\nResidencial");
         }
         if (tipo == 0) {
-            System.out.println("Comercial");
+            System.out.println("\nComercial");
         }
         System.out.printf("Descricao: %s \nTelefone: %s", descricao, telefone);
     }
