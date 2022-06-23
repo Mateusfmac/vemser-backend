@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99cc47f4-174d-4558-938c-b1d1699dddcb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/lista1/lista1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lista2/lista2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lista2/out/production/lista2/exercicio4.class" beforeDir="false" afterPath="$PROJECT_DIR$/lista2/out/production/lista2/exercicio4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lista2/out/production/lista2/exercicio8.class" beforeDir="false" afterPath="$PROJECT_DIR$/lista2/out/production/lista2/exercicio8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lista2/src/exercicio4.java" beforeDir="false" afterPath="$PROJECT_DIR$/lista2/src/exercicio4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conta-corrente/out/production/conta-corrente/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/conta-corrente/out/production/conta-corrente/Cliente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conta-corrente/out/production/conta-corrente/ContaCorrente.class" beforeDir="false" afterPath="$PROJECT_DIR$/conta-corrente/out/production/conta-corrente/ContaCorrente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conta-corrente/out/production/conta-corrente/Contato.class" beforeDir="false" afterPath="$PROJECT_DIR$/conta-corrente/out/production/conta-corrente/Contato.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conta-corrente/out/production/conta-corrente/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/conta-corrente/out/production/conta-corrente/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conta-corrente/src/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/conta-corrente/src/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conta-corrente/src/ContaCorrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/conta-corrente/src/ContaCorrente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conta-corrente/src/Contato.java" beforeDir="false" afterPath="$PROJECT_DIR$/conta-corrente/src/Contato.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +28,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/DBC/vemser-backend/modulo 1"
+    "last_opened_file_path": "C:/DBC/vemser-backend/modulo 1/conta-corrente"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
