@@ -1,5 +1,5 @@
 public class Endereco {
-    private int tipo; //1-Residencial, 2-Comercial
+    private int tipo;
     private String logradouro;
     private int numero;
     private String complemento;

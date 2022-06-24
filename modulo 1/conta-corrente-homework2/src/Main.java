@@ -18,7 +18,7 @@ public class Main {
         Contato[] arrayContato2 = {contato2};
         Endereco[] arrayEndereco2 = {endereco2};
         Cliente cliente2 = new Cliente("Sebastiana Almeida","69823547822",arrayContato2,arrayEndereco2);
-
+        // EX Maicon Contato c1 =  cliente2.getContatos()[0];
         //ContaCorrente
         ContaCorrente cc1 = new ContaCorrente(cliente1,"1122","1",0);
         ContaCorrente cc2 = new ContaCorrente(cliente2,"1123","2",0);
@@ -26,7 +26,7 @@ public class Main {
         cc2.setChequeEspecial(200);
         cc1.depositar(100);
         cc1.sacar(10);
-        cc1.transferir(cc2,100);
+        cc1.transferir(cc2,20);
         cc2.imprimir();
         System.out.println("----------------------");
         cc1.imprimir();

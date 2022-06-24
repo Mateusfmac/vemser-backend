@@ -1,4 +1,4 @@
-public class ContaPoupanca extends Conta implements Movimentacao,Impressao {
+public class ContaPoupanca extends Conta implements Impressao {
     public static final double JUROS_MENSAIS = 1.01;
 
     public ContaPoupanca(Cliente cliente, String numeroConta, String agencia, double saldo) {
