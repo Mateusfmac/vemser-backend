@@ -11,7 +11,6 @@ public class Main {
                 "18568425","São Paulo","SP","Brasil");
     
         //Cliente
-    
         Cliente cliente1 = new Cliente("Benedita Goncalves","12698874522");
         Cliente cliente2 = new Cliente("Bruscagina Guilhermina","87423685422");
         cliente1.getContatos().add(contato1);
@@ -45,6 +44,13 @@ public class Main {
         cp2.transferir(cPag,30);
         cp2.imprimir();
         cPag.imprimir();
-    
+        cPag.depositar(94.25);
+        cPag.imprimir();
+        System.out.println("------------------");
+        cPag.transferir(cc1, 500);
+        System.out.println("*--------------*");
+        cPag.sacar(10);
+        cPag.imprimir();
+        
     }
 }

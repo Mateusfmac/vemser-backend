@@ -6,29 +6,40 @@ public class Cliente {
     private ArrayList<Contato> contatos = new ArrayList<>();
     private ArrayList<Endereco> enderecos = new ArrayList<>();
     
-    public void imprimirContatos(){
-        for (Contato contato : contatos) {
-            if (contato != null){
-                contato.imprimirContato();
+    public Cliente(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+    
+    public void imprimirContatos() {
+        if (contatos != null) {
+            for (Contato contato : contatos) {
+                if (contato != null) {
+                    contato.imprimirContato();
+                }
             }
         }
     }
-    public void imprimirEnderecos(){
-        for (Endereco endereco : enderecos) {
-            if (endereco != null){
-                endereco.imprimirEndereco();
+    
+    public void imprimirEnderecos() {
+        if (enderecos != null) {
+            for (Endereco endereco : enderecos) {
+                if (endereco != null) {
+                    endereco.imprimirEndereco();
+                }
             }
         }
     }
-    public void imprimirCliente(){
-        System.out.println("Nome: "+nome);
-        System.out.println("CPF: "+cpf);
+    
+    public void imprimirCliente() {
+        System.out.println("Nome: " + nome);
+        System.out.println("CPF: " + cpf);
         imprimirEnderecos();
         imprimirContatos();
     }
     
-    public String toString(){
-        return "Nome: "+nome+"\nCPF: "+cpf;
+    public String toString() {
+        return "Nome: " + nome + "\nCPF: " + cpf;
     }
     
     public void setContatos(ArrayList<Contato> contatos) {
@@ -46,12 +57,6 @@ public class Cliente {
     public void setEnderecos(ArrayList<Endereco> enderecos) {
         this.enderecos = enderecos;
     }
-    public Cliente(String nome, String cpf) {
-        this.nome = nome;
-        this.cpf = cpf;
-        
-    }
-    
     
     public String getNome() {
         return nome;
