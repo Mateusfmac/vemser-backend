@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "e377262c-ae6a-423c-b99d-3c6be12ae85d",
+		"name": "homework1_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21782462"
+	},
+	"item": [
+		{
+			"name": "pessoa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{vem-ser-Heroku}}pessoa",
+					"host": [
+						"{{vem-ser-Heroku}}pessoa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pessoa",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"idPessoa\": 3,\r\n        \"nome\": \"Marina Editada\",\r\n        \"dataNascimento\": \"1970-03-30\",\r\n        \"cpf\": \"12345678912\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{vem-ser-Heroku}}pessoa/3",
+					"host": [
+						"{{vem-ser-Heroku}}pessoa"
+					],
+					"path": [
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pessoa",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{vem-ser-Heroku}}pessoa/3",
+					"host": [
+						"{{vem-ser-Heroku}}pessoa"
+					],
+					"path": [
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pessoa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"idPessoa\": 10,\r\n        \"nome\": \"Mateus Machado\",\r\n        \"dataNascimento\": \"1990-10-10\",\r\n        \"cpf\": \"12345678910\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{vem-ser-Heroku}}pessoa",
+					"host": [
+						"{{vem-ser-Heroku}}pessoa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contato",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vem-ser-Heroku}}contato",
+					"host": [
+						"{{vem-ser-Heroku}}contato"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contato id pessoa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vem-ser-Heroku}}contato/4",
+					"host": [
+						"{{vem-ser-Heroku}}contato"
+					],
+					"path": [
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contato id pessoa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"idContato\": 6,\r\n        \"idPessoa\": 13,\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"048995876566\",\r\n        \"descricao\": \"post ok\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{vem-ser-Heroku}}contato/13",
+					"host": [
+						"{{vem-ser-Heroku}}contato"
+					],
+					"path": [
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contato id pessoa",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"idContato\": 6,\r\n        \"idPessoa\": 13,\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"okkkk\",\r\n        \"descricao\": \"post ok\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{vem-ser-Heroku}}contato/4",
+					"host": [
+						"{{vem-ser-Heroku}}contato"
+					],
+					"path": [
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contato id contato",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{vem-ser-Heroku}}contato/2",
+					"host": [
+						"{{vem-ser-Heroku}}contato"
+					],
+					"path": [
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "vem-ser-Heroku",
+			"value": "https://back-vemserdbc.herokuapp.com/",
+			"type": "string"
+		}
+	]
+}
