@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "ec86bf27-1721-4715-a67b-ab6e1848ee85",
+		"name": "homework3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21782462"
+	},
+	"item": [
+		{
+			"name": "/contato",
+			"item": [
+				{
+					"name": "GET /contato",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{L8080}}contato",
+							"host": [
+								"{{L8080}}contato"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /contato{idPessoa}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{L8080}}contato/5",
+							"host": [
+								"{{L8080}}contato"
+							],
+							"path": [
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /contato{idPessoa}",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idContato\": 1,\r\n        \"idPessoa\": 5,\r\n        \"tipoContato\": \"COMERCIAL\",\r\n        \"numero\": \"1852369851\",\r\n        \"descricao\": \"favor nao ligar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{L8080}}contato/5",
+							"host": [
+								"{{L8080}}contato"
+							],
+							"path": [
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /contato{idContato}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idContato\": 1,\r\n        \"idPessoa\": 2,\r\n        \"tipoContato\": \"TESTE\",\r\n        \"numero\": \"1852369851\",\r\n        \"descricao\": \"favor nao ligar\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{L8080}}contato/4",
+							"host": [
+								"{{L8080}}contato"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL /contato{idContato}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{L8080}}contato/4",
+							"host": [
+								"{{L8080}}contato"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/pessoa",
+			"item": [
+				{
+					"name": "GET /pessoa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{L8080}}pessoa",
+							"host": [
+								"{{L8080}}pessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /pessoa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"idPessoa\": 1,\r\n        \"nome\": \"Maicon Gerardi\",\r\n        \"dataNascimento\": \"1990-10-10\",\r\n        \"cpf\": \"12345678910\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{L8080}}pessoa",
+							"host": [
+								"{{L8080}}pessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /pessoa{idPessoa}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"idPessoa\": 1,\r\n        \"nome\": \"Maicon Gerardi testeeeee\",\r\n        \"dataNascimento\": \"1990-10-10\",\r\n        \"cpf\": \"12345678910\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{L8080}}pessoa/1",
+							"host": [
+								"{{L8080}}pessoa"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL /pessoa{idPessoa}",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
