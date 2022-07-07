@@ -180,8 +180,131 @@
 				{
 					"name": "DEL /pessoa{idPessoa}",
 					"request": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/endereco",
+			"item": [
+				{
+					"name": "GET /endereco",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{L8080}}endereco",
+							"host": [
+								"{{L8080}}endereco"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /endereco{idEndereco}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{L8080}}endereco/1",
+							"host": [
+								"{{L8080}}endereco"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /endereco{idPessoa}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{L8080}}endereco/5/pessoa",
+							"host": [
+								"{{L8080}}endereco"
+							],
+							"path": [
+								"5",
+								"pessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /endereco{idPessoa}",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idEndereco\": 1,\r\n        \"idPessoa\": 4,\r\n        \"tipo\": \"COMERCIAL\",\r\n        \"logradouro\": \"teste post\",\r\n        \"numero\": 66666666,\r\n        \"complemento\": \"casa\",\r\n        \"cep\": \"13258761\",\r\n        \"cidade\": \"Cabritina\",\r\n        \"estado\": \"Acre\",\r\n        \"pais\": \"Brasil\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{L8080}}endereco/5",
+							"host": [
+								"{{L8080}}endereco"
+							],
+							"path": [
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /endereco{idEndereco}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idEndereco\": 10,\r\n        \"idPessoa\": 4,\r\n        \"tipo\": \"COMERCIAL\",\r\n        \"logradouro\": \"testeeee PUT\",\r\n        \"numero\": 999,\r\n        \"complemento\": \"casa\",\r\n        \"cep\": \"13258761\",\r\n        \"cidade\": \"Cabritina\",\r\n        \"estado\": \"Acre\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{L8080}}endereco/2",
+							"host": [
+								"{{L8080}}endereco"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL /endereco{idEndereco}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{L8080}}endereco/1",
+							"host": [
+								"{{L8080}}endereco"
+							],
+							"path": [
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
