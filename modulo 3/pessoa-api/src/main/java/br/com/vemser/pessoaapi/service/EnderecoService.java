@@ -3,6 +3,7 @@ package br.com.vemser.pessoaapi.service;
 import br.com.vemser.pessoaapi.entity.Contato;
 import br.com.vemser.pessoaapi.entity.Endereco;
 import br.com.vemser.pessoaapi.entity.Pessoa;
+import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.repository.EnderecoRepository;
 import br.com.vemser.pessoaapi.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,13 @@ import java.util.List;
 public class EnderecoService {
     @Autowired
     private EnderecoRepository enderecoRepository;
-    @Autowired
-    private PessoaRepository pessoaRepository;
     
-    public Endereco criar(Integer id, Endereco endereco) throws Exception {
-        Pessoa pessoa = pessoaRepository.list().stream()
-                .filter(pes -> pes.getIdPessoa().equals(id))
-                .findFirst().orElseThrow(() -> new Exception("Pessoa nao encontrada"));
+    @Autowired
+    private PessoaService pessoaService;
+    
+    public Endereco criar(Integer id, Endereco endereco) throws RegraDeNegocioException {
+        Pessoa pessoa = pessoaService.buscaIdPessoa(id);
+        endereco.setIdPessoa(id);
         return enderecoRepository.criar(endereco);
     }
     
@@ -28,19 +29,13 @@ public class EnderecoService {
         return enderecoRepository.listar();
     }
     
-    public Endereco listarIdEndereco(Integer id) throws Exception {
-        return listarIdEndereco(id);
-    }
-    
-    public Endereco listarIdPessoa(Integer id) throws Exception {
+    public Endereco listarIdPessoa(Integer id) throws RegraDeNegocioException {
         return enderecoRepository.listar().stream()
                 .filter(idPes -> idPes.getIdPessoa().equals(id))
-                .findFirst().orElseThrow(()-> new Exception("pessoa nao encontrada"));
+                .findFirst().orElseThrow(()-> new RegraDeNegocioException("pessoa nao encontrada"));
     }
     
-    /*
-    CORRIGIR TODOS USANDO METODOS DE BUSCA */
-    public Endereco update(Integer id, Endereco endereco) throws Exception {
+    public Endereco update(Integer id, Endereco endereco) throws RegraDeNegocioException {
         Endereco novoEndereco = buscarPorId(id);
         novoEndereco.setTipo(endereco.getTipo());
         novoEndereco.setLogradouro(endereco.getLogradouro());
@@ -53,14 +48,15 @@ public class EnderecoService {
         return novoEndereco;
     }
     
-    public void delete(Integer id) throws Exception {
-        enderecoRepository.delete(id);
+    public void delete(Integer id) throws RegraDeNegocioException {
+        Endereco endereco = buscarPorId(id);
+        enderecoRepository.listar().remove(endereco);
     }
     
-    public Endereco buscarPorId(Integer id) throws Exception{
+    public Endereco buscarPorId(Integer id) throws RegraDeNegocioException{
         Endereco novoEndereco = enderecoRepository.listar().stream()
                 .filter(end -> end.getIdEndereco().equals(id))
-                .findFirst().orElseThrow(() -> new Exception("endereco nao encontrado"));
+                .findFirst().orElseThrow(() -> new RegraDeNegocioException("id endereco nao encontrado"));
         return novoEndereco;
     }
 }

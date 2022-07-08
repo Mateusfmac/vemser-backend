@@ -33,12 +33,4 @@ public class EnderecoRepository {
     public List<Endereco> listar() {
         return enderecoLista;
     }
-    
-    public void delete(Integer id) throws Exception {
-        Endereco endereco = enderecoLista.stream()
-                .filter(end -> end.getIdEndereco().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new Exception("Id nao encontrado"));
-        enderecoLista.remove(endereco);
-    }
 }

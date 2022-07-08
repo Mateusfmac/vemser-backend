@@ -37,6 +37,10 @@ public class Endereco {
         return idPessoa;
     }
     
+    public void setIdPessoa(Integer idPessoa) {
+        this.idPessoa = idPessoa;
+    }
+    
     public TipoEndereco getTipo() {
         return tipo;
     }
