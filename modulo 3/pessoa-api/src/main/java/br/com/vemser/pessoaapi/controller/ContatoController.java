@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/contato")
 public class ContatoController {
@@ -17,27 +18,27 @@ public class ContatoController {
     }
     
     @PostMapping("/{idPessoa}")
-    public Contato create(@PathVariable("idPessoa")Integer id, @RequestBody Contato contato) throws Exception {
+    public Contato create(@PathVariable("idPessoa") Integer id, @RequestBody Contato contato) throws Exception {
         return contatoService.create(id, contato);
     }
     
     @GetMapping
-    public List<Contato> listar() throws Exception{
+    public List<Contato> listar() throws Exception {
         return contatoService.listar();
     }
     
     @PutMapping("/{idContato}")
-    public Contato update(@PathVariable("idContato")Integer id, @RequestBody Contato contatoAtualizar) throws Exception {
+    public Contato update(@PathVariable("idContato") Integer id, @RequestBody Contato contatoAtualizar) throws Exception {
         return contatoService.update(id, contatoAtualizar);
     }
     
     @DeleteMapping("/{idContato}")
-    public void delete(@PathVariable("idContato")Integer id) throws Exception {
+    public void delete(@PathVariable("idContato") Integer id) throws Exception {
         contatoService.delete(id);
     }
     
     @GetMapping("/{idPessoa}")
     public Contato contatoIdPessoa(@PathVariable("idPessoa") Integer id) throws Exception {
-        return contatoService.contatoIdPessoa(id);
+        return contatoService.listarIdPessoa(id);
     }
 }

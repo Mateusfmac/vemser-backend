@@ -2,6 +2,7 @@ package br.com.vemser.pessoaapi.service;
 
 import br.com.vemser.pessoaapi.entity.Contato;
 import br.com.vemser.pessoaapi.entity.Pessoa;
+import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.repository.ContatoRepository;
 import br.com.vemser.pessoaapi.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,30 +18,27 @@ public class ContatoService {
     private ContatoRepository contatoRepository;
     
     @Autowired
-    private PessoaRepository pessoaRepository;
+    private PessoaService pessoaService;
     
-    public Contato create(Integer id, Contato contato) throws Exception {
-        Pessoa pessoa = pessoaRepository.list().stream()
-                .filter(pes -> pes.getIdPessoa().equals(id))
-                .findFirst().orElseThrow(() -> new Exception("pessoa nao encontrada"));
+    public Contato create(Integer id, Contato contato) throws RegraDeNegocioException {
+        Pessoa pessoa = pessoaService.buscaIdPessoa(id);
+        contato.setIdPessoa(id);
         return contatoRepository.create(contato);
     }
     
-    public List<Contato> listar() throws Exception {
+    public List<Contato> listar() {
         return contatoRepository.listar();
     }
     
-    public Contato contatoIdPessoa(Integer id) throws Exception {
-        return contatoRepository.listar().stream()
-                .filter(contato -> contato.getIdPessoa().equals(id))
-                .findFirst().orElseThrow(() -> new Exception("id nao encontrado"));
+    public Contato listarIdPessoa (Integer id) throws RegraDeNegocioException {
+       return contatoRepository.listar().stream()
+               .filter(contato -> contato.getIdPessoa().equals(id))
+               .findFirst()
+               .orElseThrow(()-> new RegraDeNegocioException("pessoa nao encontrada"));
     }
     
     public Contato update(Integer id, Contato contatoAtualizar) throws Exception {
-        Contato contatoLista = contatoRepository.listar().stream()
-                .filter(contato -> contato.getIdContato().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new Exception("Contato nao encontrado"));
+        Contato contatoLista = buscaIdContato(id);
         contatoLista.setTipoContato(contatoAtualizar.getTipoContato());
         contatoLista.setNumero(contatoAtualizar.getNumero());
         contatoLista.setDescricao(contatoAtualizar.getDescricao());
@@ -48,6 +46,14 @@ public class ContatoService {
     }
     
     public void delete(Integer id) throws Exception {
-        contatoRepository.delete(id);
+        Contato contatoLista = buscaIdContato(id);
+        contatoRepository.listar().remove(contatoLista);
+    }
+    
+    public Contato buscaIdContato (Integer id) throws RegraDeNegocioException {
+     return contatoRepository.listar().stream()
+             .filter(contato -> contato.getIdContato().equals(id))
+             .findFirst()
+             .orElseThrow(()-> new RegraDeNegocioException("Contato nao encontrado"));
     }
 }
