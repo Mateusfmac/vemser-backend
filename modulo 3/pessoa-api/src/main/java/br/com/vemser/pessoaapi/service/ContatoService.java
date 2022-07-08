@@ -37,7 +37,7 @@ public class ContatoService {
                .orElseThrow(()-> new RegraDeNegocioException("pessoa nao encontrada"));
     }
     
-    public Contato update(Integer id, Contato contatoAtualizar) throws Exception {
+    public Contato update(Integer id, Contato contatoAtualizar) throws RegraDeNegocioException{
         Contato contatoLista = buscaIdContato(id);
         contatoLista.setTipoContato(contatoAtualizar.getTipoContato());
         contatoLista.setNumero(contatoAtualizar.getNumero());
@@ -45,7 +45,7 @@ public class ContatoService {
         return contatoLista;
     }
     
-    public void delete(Integer id) throws Exception {
+    public void delete(Integer id) throws RegraDeNegocioException {
         Contato contatoLista = buscaIdContato(id);
         contatoRepository.listar().remove(contatoLista);
     }

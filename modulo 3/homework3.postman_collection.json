@@ -47,7 +47,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"idContato\": 1,\r\n        \"idPessoa\": 5,\r\n        \"tipoContato\": \"COMERCIAL\",\r\n        \"numero\": \"1852369851\",\r\n        \"descricao\": \"favor nao ligar\"\r\n}",
+							"raw": "{\r\n        \"idContato\": 1,\r\n        \"idPessoa\": 5,\r\n        \"tipoContato\": \"COMERCIAL\",\r\n        \"numero\": \"185236985155555555\",\r\n        \"descricao\": \"favor nao ligar\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,13 +129,36 @@
 					"response": []
 				},
 				{
+					"name": "GET /pessoa/pornome?",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{L8080}}pessoa/pornome?nome=Mateus",
+							"host": [
+								"{{L8080}}pessoa"
+							],
+							"path": [
+								"pornome"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Mateus"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "POST /pessoa",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"idPessoa\": 1,\r\n        \"nome\": \"Maicon Gerardi\",\r\n        \"dataNascimento\": \"1990-10-10\",\r\n        \"cpf\": \"12345678910\"\r\n}",
+							"raw": "{\r\n        \"idPessoa\": 1,\r\n        \"nome\": \"Maicon Gerardi\",\r\n        \"dataNascimento\": \"1990-10-10\",\r\n        \"cpf\": \"047.123.380-32\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -158,7 +181,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"idPessoa\": 1,\r\n        \"nome\": \"Maicon Gerardi testeeeee\",\r\n        \"dataNascimento\": \"1990-10-10\",\r\n        \"cpf\": \"12345678910\"\r\n}",
+							"raw": " {\r\n        \"idPessoa\": 1,\r\n        \"nome\": \"Maicon Gerardi testeeeee\",\r\n        \"dataNascimento\": \"1990-10-10\",\r\n        \"cpf\": \"047.123.380-32\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -181,7 +204,16 @@
 					"name": "DEL /pessoa{idPessoa}",
 					"request": {
 						"method": "DELETE",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{L8080}}pessoa/1",
+							"host": [
+								"{{L8080}}pessoa"
+							],
+							"path": [
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
@@ -254,12 +286,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{L8080}}endereco/5",
+							"raw": "{{L8080}}endereco/6",
 							"host": [
 								"{{L8080}}endereco"
 							],
 							"path": [
-								"5"
+								"6"
 							]
 						}
 					},

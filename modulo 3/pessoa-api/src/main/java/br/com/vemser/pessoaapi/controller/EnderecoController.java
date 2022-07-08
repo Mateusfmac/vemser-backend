@@ -4,20 +4,25 @@ import br.com.vemser.pessoaapi.entity.Endereco;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/endereco")
+@Validated
 public class EnderecoController {
     
     @Autowired
     private EnderecoService enderecoService;
     
     @PostMapping("/{idPessoa}")
-    public Endereco criar(@PathVariable("idPessoa") Integer id, @RequestBody Endereco endereco) throws RegraDeNegocioException {
-        return enderecoService.criar(id, endereco);
+    public ResponseEntity<Endereco> criar(@PathVariable("idPessoa") Integer id, @RequestBody @Valid Endereco endereco) throws RegraDeNegocioException {
+        return new ResponseEntity(enderecoService.criar(id, endereco), HttpStatus.OK);
     }
     
     @GetMapping
@@ -36,8 +41,8 @@ public class EnderecoController {
     }
     
     @PutMapping("/{idEndereco}")
-    public Endereco update(@PathVariable("idEndereco") Integer id, @RequestBody Endereco endereco) throws RegraDeNegocioException {
-        return enderecoService.update(id, endereco);
+    public ResponseEntity<Endereco> update(@PathVariable("idEndereco") Integer id, @RequestBody @Valid Endereco endereco) throws RegraDeNegocioException {
+        return new ResponseEntity(enderecoService.update(id, endereco), HttpStatus.OK);
     }
     
     @DeleteMapping("/{idEndereco}")
