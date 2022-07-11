@@ -1,21 +1,18 @@
-package br.com.vemser.pessoaapi.entity;
+package br.com.vemser.pessoaapi.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter // ou @Data
-@Setter // ou @Data
-@ToString // ou @Data
-public class Pessoa {
-    private Integer idPessoa;
-    
+public class PessoaCreateDTO {
     @NotNull
     @NotBlank(message = "insira o nome")
     private String nome;
@@ -28,4 +25,3 @@ public class Pessoa {
     @NotBlank
     private String cpf;
 }
-

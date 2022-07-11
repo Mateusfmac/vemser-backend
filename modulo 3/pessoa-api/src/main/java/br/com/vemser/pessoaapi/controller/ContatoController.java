@@ -1,5 +1,7 @@
 package br.com.vemser.pessoaapi.controller;
 
+import br.com.vemser.pessoaapi.dto.ContatoCreateDTO;
+import br.com.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.vemser.pessoaapi.entity.Contato;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.service.ContatoService;
@@ -24,17 +26,17 @@ public class ContatoController {
     }
     
     @PostMapping("/{idPessoa}")
-    public ResponseEntity<Contato> create(@PathVariable("idPessoa") Integer id, @RequestBody @Valid Contato contato) throws RegraDeNegocioException {
+    public ResponseEntity<ContatoDTO> create(@PathVariable("idPessoa") Integer id, @RequestBody @Valid ContatoCreateDTO contato) throws RegraDeNegocioException {
         return new ResponseEntity(contatoService.create(id, contato), HttpStatus.OK);
     }
     
     @GetMapping
-    public List<Contato> listar() {
+    public List<ContatoDTO> listar() {
         return contatoService.listar();
     }
     
     @PutMapping("/{idContato}")
-    public ResponseEntity<Contato> update(@PathVariable("idContato") Integer id, @RequestBody @Valid Contato contatoAtualizar) throws RegraDeNegocioException {
+    public ResponseEntity<ContatoDTO> update(@PathVariable("idContato") Integer id, @RequestBody @Valid ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException {
         return new  ResponseEntity(contatoService.update(id, contatoAtualizar), HttpStatus.OK);
     }
     
@@ -44,7 +46,7 @@ public class ContatoController {
     }
     
     @GetMapping("/{idPessoa}")
-    public Contato contatoIdPessoa(@PathVariable("idPessoa") Integer id) throws RegraDeNegocioException {
+    public ContatoDTO contatoIdPessoa(@PathVariable("idPessoa") Integer id) throws RegraDeNegocioException {
         return contatoService.listarIdPessoa(id);
     }
 }

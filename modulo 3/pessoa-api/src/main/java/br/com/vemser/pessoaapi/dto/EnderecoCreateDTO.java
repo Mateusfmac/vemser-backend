@@ -1,14 +1,17 @@
-package br.com.vemser.pessoaapi.entity;
+package br.com.vemser.pessoaapi.dto;
 
-import lombok.*;
-
-import javax.validation.constraints.*;
-
+ import br.com.vemser.pessoaapi.entity.TipoEndereco;
+ import lombok.*;
+ import javax.validation.constraints.Min;
+ import javax.validation.constraints.NotBlank;
+ import javax.validation.constraints.NotNull;
+ import javax.validation.constraints.Size;
+ 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Endereco {
-    private Integer idEndereco;
+public class EnderecoCreateDTO {
+    
     private Integer idPessoa;
     
     @NotNull(message = "insira um tipo de endereco: RESIDENCIAL ou COMERCIAL")

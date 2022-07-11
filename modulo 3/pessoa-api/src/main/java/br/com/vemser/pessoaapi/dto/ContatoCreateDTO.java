@@ -1,4 +1,4 @@
-package br.com.vemser.pessoaapi.entity;
+package br.com.vemser.pessoaapi.dto;
 
 import lombok.*;
 
@@ -9,8 +9,8 @@ import javax.validation.constraints.Size;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Contato {
-    private Integer idContato;
+public class ContatoCreateDTO {
+    
     private Integer idPessoa;
     
     @NotNull(message = "insira um tipo de contato valido")
