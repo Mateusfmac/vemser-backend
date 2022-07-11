@@ -12,11 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class EnderecoRepository {
     public static List<Endereco> enderecoLista = new ArrayList<>();
     private final AtomicInteger COUNT = new AtomicInteger();
-    private PessoaRepository pessoaRepository;
-    
     
     public EnderecoRepository() {
-        pessoaRepository = new PessoaRepository();
         enderecoLista.add(new Endereco(COUNT.incrementAndGet(), 5, TipoEndereco.COMERCIAL, "Rua das Galinhas", 222, "casa", "13258761", "Cabritina", "Acre", "Brasil"));
         enderecoLista.add(new Endereco(COUNT.incrementAndGet(), 4, TipoEndereco.RESIDENCIAL, "Padre Longino", 8962, "casa", "25896321", "Caninana", "Sao Paulo", "Brasil"));
         enderecoLista.add(new Endereco(COUNT.incrementAndGet(), 3, TipoEndereco.RESIDENCIAL, "Rua Ernestina Sebastiana", 129, "casa", "13889361", "Mongua", "Rio de Janeiro", "Brasil"));

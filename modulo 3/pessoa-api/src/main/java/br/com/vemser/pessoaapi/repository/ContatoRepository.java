@@ -12,10 +12,9 @@ public class ContatoRepository {
     
     private static List<Contato> listaContatos = new ArrayList<>();
     private AtomicInteger COUNT = new AtomicInteger();
-    PessoaRepository pessoaRepository;
+   
     
     public ContatoRepository() {
-        pessoaRepository = new PessoaRepository();
         listaContatos.add(new Contato(COUNT.incrementAndGet(), 3, "COMERCIAL", "1852369851", "favor nao ligar"));
         listaContatos.add(new Contato(COUNT.incrementAndGet(), 5, "RESIDENCIAL", "1852369851", "favor nao ligar"));
         listaContatos.add(new Contato(COUNT.incrementAndGet(), 4, "RESIDENCIAL", "1852369851", "favor nao ligar"));
