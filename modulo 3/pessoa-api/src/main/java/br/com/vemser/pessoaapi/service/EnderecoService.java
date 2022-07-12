@@ -33,8 +33,9 @@ public class EnderecoService {
         Pessoa pessoaEncontrada = pessoaService.buscaIdPessoa(id);
         enderecoCreateDTO.setIdPessoa(id);
         Endereco enderecoEntity = objectMapper.convertValue(enderecoCreateDTO, Endereco.class);
+        enderecoRepository.criar(enderecoEntity);
         emailService.sendEmailCreate(pessoaService.convertToDTO(pessoaEncontrada), convertToDTO(enderecoEntity));
-        return convertToDTO(enderecoRepository.criar(enderecoEntity));
+        return convertToDTO(enderecoEntity) ;
     }
     
     public List<EnderecoDTO> listar() {

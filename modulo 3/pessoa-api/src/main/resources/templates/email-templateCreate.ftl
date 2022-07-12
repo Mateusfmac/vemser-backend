@@ -19,7 +19,7 @@
                         </div>
 
                         <div style="font-size: 24px; color: #555100;">
-                            <br>Olá<b>${nome},</b>  <br>Um endereço foi criado em seu nome.
+                            <br>Olá<b>${nome},</b>  <br>Um endereço foi criado em seu nome. o identificador é <b>idEndereco:${idEndereco}</b>
                             <br>Qualquer duvida é so contatar o suporte pelo email " ${from} <br>
                             Att, <br>
                             Sistema.

@@ -68,6 +68,7 @@ public class EmailService {
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", pessoa.getNome());
         dados.put("email", pessoa.getEmail());
+        dados.put("idEndereco", endereco.getIdEndereco());
         dados.put("from", from);
         Template template = fmConfiguration.getTemplate("email-templateCreate.ftl");
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, dados);
