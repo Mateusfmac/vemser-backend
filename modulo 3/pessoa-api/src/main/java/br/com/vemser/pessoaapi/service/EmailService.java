@@ -102,8 +102,8 @@ public class EmailService {
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
             mimeMessageHelper.setFrom(from);
-            mimeMessageHelper.setTo(from);
-            mimeMessageHelper.setSubject("Assunto 3");
+            mimeMessageHelper.setTo(pessoa.getEmail());
+            mimeMessageHelper.setSubject("Endereço Criado");
             mimeMessageHelper.setText(getTemplateCreate(pessoa, endereco), true);
             emailSender.send(mimeMessageHelper.getMimeMessage());
         } catch (MessagingException | IOException | TemplateException e) {
@@ -116,8 +116,8 @@ public class EmailService {
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
             mimeMessageHelper.setFrom(from);
-            mimeMessageHelper.setTo(from);
-            mimeMessageHelper.setSubject("Assunto 3");
+            mimeMessageHelper.setTo(pessoa.getEmail());
+            mimeMessageHelper.setSubject("Endereço Atualizado");
             mimeMessageHelper.setText(getTemplateUpdate(pessoa, endereco), true);
             emailSender.send(mimeMessageHelper.getMimeMessage());
         } catch (MessagingException | IOException | TemplateException e) {
@@ -130,8 +130,8 @@ public class EmailService {
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
             mimeMessageHelper.setFrom(from);
-            mimeMessageHelper.setTo(from);
-            mimeMessageHelper.setSubject("Assunto 3");
+            mimeMessageHelper.setTo(pessoa.getEmail());
+            mimeMessageHelper.setSubject("Endereço Deletado");
             mimeMessageHelper.setText(getTemplateDelete(pessoa, endereco), true);
             emailSender.send(mimeMessageHelper.getMimeMessage());
         } catch (MessagingException | IOException | TemplateException e) {
