@@ -63,16 +63,13 @@ public class EmailService {
                 "\nSistema.");
     }
     
-    //falta delete
-    
-    
     //homework
     public String getTemplateCreate(PessoaDTO pessoa, EnderecoDTO endereco) throws IOException, TemplateException {
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", pessoa.getNome());
         dados.put("email", pessoa.getEmail());
-        dados.put("idEndereco", endereco.getIdEndereco());
-        Template template = fmConfiguration.getTemplate("email-template.ftl");
+        dados.put("from", from);
+        Template template = fmConfiguration.getTemplate("email-templateCreate.ftl");
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, dados);
         return html;
     }
@@ -82,7 +79,8 @@ public class EmailService {
         dados.put("nome", pessoa.getNome());
         dados.put("email", pessoa.getEmail());
         dados.put("idEndereco", endereco.getIdEndereco());
-        Template template = fmConfiguration.getTemplate("email-template.ftl");
+        dados.put("from", from);
+        Template template = fmConfiguration.getTemplate("email-templateUpdate.ftl");
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, dados);
         return html;
     }
@@ -92,7 +90,8 @@ public class EmailService {
         dados.put("nome", pessoa.getNome());
         dados.put("email", pessoa.getEmail());
         dados.put("idEndereco", endereco.getIdEndereco());
-        Template template = fmConfiguration.getTemplate("email-template.ftl");
+        dados.put("from", from);
+        Template template = fmConfiguration.getTemplate("email-templateDelete.ftl");
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, dados);
         return html;
     }
