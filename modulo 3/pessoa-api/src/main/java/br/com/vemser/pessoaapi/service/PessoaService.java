@@ -9,8 +9,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.extern.java.Log;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Log
 @Service
 public class PessoaService {
@@ -19,8 +21,12 @@ public class PessoaService {
     @Autowired
     private ObjectMapper objectMapper;
     
+    @Autowired
+    private EmailService emailService;
+    
     public PessoaDTO create(PessoaCreateDTO pessoaCreateDTO) throws RegraDeNegocioException {
         Pessoa pessoaEntity = objectMapper.convertValue(pessoaCreateDTO, Pessoa.class);
+        emailService.createSimpleMessagePessoa(pessoaEntity);
         return objectMapper.convertValue(pessoaRepository.create(pessoaEntity), PessoaDTO.class);
     }
     
@@ -43,12 +49,23 @@ public class PessoaService {
         pessoaRecuperada.setCpf(pessoaAtualizar.getCpf());
         pessoaRecuperada.setNome(pessoaAtualizar.getNome());
         pessoaRecuperada.setDataNascimento(pessoaAtualizar.getDataNascimento());
+        emailService.updateSimpleMessagePessoa(pessoaRecuperada);
         return objectMapper.convertValue(pessoaAtualizar, PessoaDTO.class);
     }
     
     public void delete(Integer id) throws RegraDeNegocioException {
         Pessoa pessoaRecuperada = buscaIdPessoa(id);
         pessoaRepository.list().remove(pessoaRecuperada);
+    }
+    
+    public PessoaDTO convertToDTO(Pessoa pessoa) {
+        PessoaDTO pessoaDTO = objectMapper.convertValue(pessoa, PessoaDTO.class);
+        return pessoaDTO;
+    }
+    
+    public Pessoa convertToEntity(PessoaDTO pessoaDTO) {
+        Pessoa pessoa = objectMapper.convertValue(pessoaDTO, Pessoa.class);
+        return pessoa;
     }
     
     public Pessoa buscaIdPessoa(Integer id) throws RegraDeNegocioException {

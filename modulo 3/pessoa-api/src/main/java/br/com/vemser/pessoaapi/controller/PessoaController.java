@@ -4,6 +4,7 @@ import br.com.vemser.pessoaapi.config.PropertieReader;
 import br.com.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
+import br.com.vemser.pessoaapi.service.EmailService;
 import br.com.vemser.pessoaapi.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,9 @@ public class PessoaController {
     @Autowired
     private PropertieReader propertieReader;
     
+    @Autowired
+    private EmailService emailService;
+    
     //MODELO ATUAL
     //private final PessoaService pessoaService;
     
@@ -34,6 +38,11 @@ public class PessoaController {
         return propertieReader.getAmbiente();
     }
     
+    /*@GetMapping("/email")
+    public String email() {
+      emailService.sendSimpleMessage();
+      return "Enviado Email..";
+    }*/
     @PostMapping //localhost:8080/pessoa
     public ResponseEntity<PessoaDTO> create(@RequestBody @Valid PessoaCreateDTO pessoa) throws RegraDeNegocioException {
         return new ResponseEntity(pessoaService.create(pessoa), HttpStatus.OK);

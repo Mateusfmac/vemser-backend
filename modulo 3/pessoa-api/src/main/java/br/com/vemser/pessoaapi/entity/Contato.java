@@ -10,17 +10,10 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Contato {
+    //validacoes nos DTO
     private Integer idContato;
     private Integer idPessoa;
-    
-    @NotNull(message = "insira um tipo de contato valido")
     private String tipoContato;
-    
-    @NotNull
-    @Size(max = 13, message = "insira um numero com ate 13 digitos")
     private String numero;
-    
-    @NotBlank
-    @NotNull
     private String descricao;
 }

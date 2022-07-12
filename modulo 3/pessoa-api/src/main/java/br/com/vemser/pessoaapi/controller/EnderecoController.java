@@ -4,12 +4,14 @@ import br.com.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.vemser.pessoaapi.dto.EnderecoDTO;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.service.EnderecoService;
+import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -21,7 +23,7 @@ public class EnderecoController {
     private EnderecoService enderecoService;
     
     @PostMapping("/{idPessoa}")
-    public ResponseEntity<EnderecoDTO> criar(@PathVariable("idPessoa") Integer id, @RequestBody @Valid EnderecoCreateDTO endereco) throws RegraDeNegocioException {
+    public ResponseEntity<EnderecoDTO> criar(@PathVariable("idPessoa") Integer id, @RequestBody @Valid EnderecoCreateDTO endereco) throws RegraDeNegocioException, TemplateException, IOException {
         return new ResponseEntity(enderecoService.criar(id, endereco), HttpStatus.OK);
     }
     
