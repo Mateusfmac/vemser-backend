@@ -1,5 +1,6 @@
 package br.com.vemser.pessoaapi.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,14 +14,17 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PessoaCreateDTO {
+    @Schema(description = "Nome da Pessoa")
     @NotNull
     @NotBlank(message = "insira o nome")
     private String nome;
     
+    @Schema(description = "Data no passado")
     @NotNull
-    @Past(message = "insira uma data válida")
+    @Past(message = "insira uma data válida no formato aaaa-mm-dd")
     private LocalDate dataNascimento;
     
+    @Schema(description = "CPF válido")
     @CPF(message = "insira um cpf válido")
     @NotBlank
     private String cpf;
