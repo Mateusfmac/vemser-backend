@@ -12,7 +12,7 @@ package br.com.vemser.pessoaapi.dto;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EnderecoCreateDTO {
-    
+    @Schema(description = "ID pessoa")
     private Integer idPessoa;
     
     @Schema(description = "Tipo do endereço")

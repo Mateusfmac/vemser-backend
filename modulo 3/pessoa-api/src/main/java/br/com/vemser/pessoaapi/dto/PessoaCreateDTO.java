@@ -28,5 +28,7 @@ public class PessoaCreateDTO {
     @CPF(message = "insira um cpf válido")
     @NotBlank
     private String cpf;
+    
+    @Schema(description = "email da pessoa")
     private String email;
 }
