@@ -1,8 +1,6 @@
 package br.com.vemser.pessoaapi.service;
 
-import br.com.vemser.pessoaapi.dto.PessoaCreateDTO;
-import br.com.vemser.pessoaapi.dto.PessoaDTO;
-import br.com.vemser.pessoaapi.dto.PetDTO;
+import br.com.vemser.pessoaapi.dto.*;
 import br.com.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.repository.PessoaRepository;
@@ -74,4 +72,41 @@ public class PessoaService {
                 .orElseThrow(() -> new RegraDeNegocioException("id Pessoa não econtrado"));
     }
     
+    public List<PessoaDTO> listarPessoaPets() {
+        return pessoaRepository.findAll()
+                .stream()
+                .map(pessoaEntity -> {
+                    PessoaDTO pessoaDTO = convertToDTO(pessoaEntity);
+                    pessoaDTO.setPetDTO(objectMapper.convertValue(pessoaEntity.getPet(), PetDTO.class));
+                    return pessoaDTO;
+                }).toList();
+    }
+    
+    public List<PessoaDTO> listarPessoaContato() {
+        return pessoaRepository.findAll()
+                .stream()
+                .map(pessoaEntity -> {
+                    PessoaDTO pessoaDTO = convertToDTO(pessoaEntity);
+                    pessoaDTO.setContatoDTOList(pessoaEntity.getContatos()
+                            .stream()
+                            .map(contatoEntity ->
+                                    objectMapper.convertValue(contatoEntity, ContatoDTO.class))
+                            .toList());
+                    return pessoaDTO;
+                }).toList();
+    }
+    
+    public List<PessoaDTO> listarPessoaEndereco() {
+        return pessoaRepository.findAll()
+                .stream()
+                .map(pessoaEntity -> {
+                    PessoaDTO pessoaDTO = convertToDTO(pessoaEntity);
+                    pessoaDTO.setEnderecoDTOList(pessoaEntity.getEnderecos()
+                            .stream()
+                            .map(enderecoEntity ->
+                                    objectMapper.convertValue(enderecoEntity, EnderecoDTO.class))
+                            .toList());
+                    return pessoaDTO;
+                }).toList();
+    }
 }

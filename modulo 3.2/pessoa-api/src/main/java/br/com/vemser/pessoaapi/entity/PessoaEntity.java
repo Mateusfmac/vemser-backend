@@ -47,6 +47,6 @@ public class PessoaEntity {
             joinColumns = @JoinColumn(name = "ID_PESSOA"),
             inverseJoinColumns = @JoinColumn(name = "ID_ENDERECO")
             )
-    private Set<EnderecoEntity> pessoas;
+    private Set<EnderecoEntity> enderecos;
 }
 

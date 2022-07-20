@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
@@ -103,7 +104,7 @@ public class PessoaController {
     )
     @PutMapping("/{idPessoa}") //localhost:8080/pessoa/1000
     public ResponseEntity<PessoaDTO> update(@PathVariable("idPessoa") Integer id,
-                         @RequestBody @Valid PessoaCreateDTO pessoaAtualizar) throws RegraDeNegocioException {
+                                            @RequestBody @Valid PessoaCreateDTO pessoaAtualizar) throws RegraDeNegocioException {
         return new ResponseEntity(pessoaService.update(id, pessoaAtualizar), HttpStatus.OK);
     }
     
@@ -122,15 +123,31 @@ public class PessoaController {
         return new ResponseEntity(HttpStatus.OK);
     }
     
+    //hw2
+    @GetMapping("/pessoaPet")
+    public List<PessoaDTO> listarPessoaPets() {
+        return pessoaService.listarPessoaPets();
+    }
+    
+    @GetMapping("/pessoEndereco")
+    public List<PessoaDTO> listarPessoaEndereco() {
+        return pessoaService.listarPessoaEndereco();
+    }
+    
+    @GetMapping("/pessoaContato")
+    public List<PessoaDTO> listarPessoaContato() {
+        return pessoaService.listarPessoaContato();
+    }
+    
     //exercicios
     @GetMapping("/{nome}")
-    public ResponseEntity<PessoaEntity> buscarNomePessoa(@PathVariable("nome") String nome) throws RegraDeNegocioException{
+    public ResponseEntity<PessoaEntity> buscarNomePessoa(@PathVariable("nome") String nome) throws RegraDeNegocioException {
         return new ResponseEntity(pessoaRepository.findByNomeContainsIgnoreCase(nome), HttpStatus.OK);
     }
     
     @GetMapping("/cpf")
     public ResponseEntity<PessoaEntity> buscarCpfPessoa(@RequestParam("cpf") String cpf) throws RegraDeNegocioException {
-       return new ResponseEntity(pessoaRepository.findByCpf(cpf), HttpStatus.OK);
+        return new ResponseEntity(pessoaRepository.findByCpf(cpf), HttpStatus.OK);
     }
     
    /* @GetMapping("dataNascimento")
