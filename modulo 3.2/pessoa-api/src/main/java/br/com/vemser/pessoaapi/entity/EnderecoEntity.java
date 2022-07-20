@@ -1,8 +1,10 @@
 package br.com.vemser.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +19,7 @@ public class EnderecoEntity {
     @Column(name = "ID_ENDERECO")
     private Integer idEndereco;
     
-    private Integer idPessoa;
+  //  private Integer idPessoa;
     
     @Column(name = "TIPO")
     private TipoEndereco tipo;
@@ -31,8 +33,16 @@ public class EnderecoEntity {
     private String cep;
     @Column(name = "CIDADE")
     private String cidade;
-    @Column(name = "CIDADE")
+    @Column(name = "ESTADO")
     private String estado;
     @Column(name = "PAIS")
     private String pais;
+    
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "PESSOA_X_PESSOA_ENDERECO",
+    joinColumns = @JoinColumn(name = "ID_endereco"),
+    inverseJoinColumns = @JoinColumn(name = "ID_PESSOA")
+    )
+    private Set<PessoaEntity> pessoas;
 }

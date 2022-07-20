@@ -3,7 +3,9 @@ package br.com.vemser.pessoaapi.controller;
 import br.com.vemser.pessoaapi.config.PropertieReader;
 import br.com.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
+import br.com.vemser.pessoaapi.repository.PessoaRepository;
 import br.com.vemser.pessoaapi.service.EmailService;
 import br.com.vemser.pessoaapi.service.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -28,6 +31,9 @@ public class PessoaController {
     
     @Autowired
     private EmailService emailService;
+    
+    @Autowired
+    private PessoaRepository pessoaRepository;
     
     //MODELO ATUAL
     //private final PessoaService pessoaService;
@@ -115,4 +121,20 @@ public class PessoaController {
         pessoaService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+    
+    //exercicios
+    @GetMapping("/{nome}")
+    public ResponseEntity<PessoaEntity> buscarNomePessoa(@PathVariable("nome") String nome) throws RegraDeNegocioException{
+        return new ResponseEntity(pessoaRepository.findByNomeContainsIgnoreCase(nome), HttpStatus.OK);
+    }
+    
+    @GetMapping("/cpf")
+    public ResponseEntity<PessoaEntity> buscarCpfPessoa(@RequestParam("cpf") String cpf) throws RegraDeNegocioException {
+       return new ResponseEntity(pessoaRepository.findByCpf(cpf), HttpStatus.OK);
+    }
+    
+   /* @GetMapping("dataNascimento")
+    public ResponseEntity<PessoaEntity> buscarDataNascEntre(@RequestParam("dataNascimento") Date inicio, Date fim) throws RegraDeNegocioException{
+        return new ResponseEntity(pessoaRepository.findByNascimentoBetween(inicio, fim), HttpStatus.OK);
+    }*/
 }

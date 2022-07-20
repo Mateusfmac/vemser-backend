@@ -28,7 +28,8 @@ public class ContatoService {
         pessoaService.buscaIdPessoa(id);
         contatoCreateDTO.setIdPessoa(id);
         ContatoEntity contatoEntity = objectMapper.convertValue(contatoCreateDTO, ContatoEntity.class);
-        return objectMapper.convertValue(contatoRepository.save(contatoEntity), ContatoDTO.class);
+        contatoRepository.save(contatoEntity);
+        return objectMapper.convertValue(contatoEntity, ContatoDTO.class);
     }
     
     public List<ContatoDTO> listar() {

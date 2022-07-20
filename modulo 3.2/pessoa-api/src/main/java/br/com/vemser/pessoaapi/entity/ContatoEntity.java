@@ -1,6 +1,8 @@
 package br.com.vemser.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -8,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "ENDERECO_PESSOA")
+@Entity(name = "CONTATO")
 public class ContatoEntity {
     //validacoes nos DTO
     @Id
@@ -16,7 +18,7 @@ public class ContatoEntity {
     @SequenceGenerator(name = "CONTATO_SEQ", sequenceName = "SEQ_CONTATO", allocationSize = 1)
     @Column(name = "ID_CONTATO")
     private Integer idContato;
-    @Column(name = "ID_PESSOA")
+    @Column(name = "ID_PESSOA", insertable = false, updatable = false)
     private Integer idPessoa;
     @Column(name = "TIPO")
     private String tipoContato;
@@ -24,4 +26,9 @@ public class ContatoEntity {
     private String numero;
     @Column(name = "DESCRICAO")
     private String descricao;
+    
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PESSOA", referencedColumnName = "ID_PESSOA")
+    private PessoaEntity pessoa;
 }

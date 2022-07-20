@@ -9,4 +9,6 @@ import lombok.*;
 public class PessoaDTO extends PessoaCreateDTO {
     @Schema(description = "ID da pessoa")
     private Integer idPessoa;
+    @Schema(description = "pet")
+    private PetDTO petDTO;
 }

@@ -2,6 +2,7 @@ package br.com.vemser.pessoaapi.service;
 
 import br.com.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.vemser.pessoaapi.dto.PetDTO;
 import br.com.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.repository.PessoaRepository;
@@ -72,4 +73,5 @@ public class PessoaService {
         return pessoaRepository.findById(id)
                 .orElseThrow(() -> new RegraDeNegocioException("id Pessoa não econtrado"));
     }
+    
 }
