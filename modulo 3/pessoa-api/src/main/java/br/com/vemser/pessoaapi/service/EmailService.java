@@ -8,17 +8,17 @@ import br.com.vemser.pessoaapi.entity.Pessoa;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -81,7 +81,7 @@ public class EmailService {
         dados.put("email", pessoa.getEmail());
         dados.put("idEndereco", endereco.getIdEndereco());
         dados.put("from", from);
-        Template template = fmConfiguration.getTemplate("email-templateUpdate.ftl");
+        Template template = fmConfiguration.getTemplate("email-templateDelete.html");
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, dados);
         return html;
     }
@@ -100,10 +100,17 @@ public class EmailService {
     public void sendEmailCreate(PessoaDTO pessoa, EnderecoDTO endereco) {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            FileSystemResource image1 = new FileSystemResource(new File("C:\\DBC\\vemser-backend\\modulo 3\\pessoa-api\\src\\main\\resources\\templates\\images\\img1.png"));
+            FileSystemResource image2 = new FileSystemResource(new File("C:\\DBC\\vemser-backend\\modulo 3\\pessoa-api\\src\\main\\resources\\templates\\images\\img2.png"));
+            FileSystemResource image3 = new FileSystemResource(new File("C:\\DBC\\vemser-backend\\modulo 3\\pessoa-api\\src\\main\\resources\\templates\\images\\Reservei.png"));
             mimeMessageHelper.setFrom(from);
             mimeMessageHelper.setTo(pessoa.getEmail());
             mimeMessageHelper.setSubject("Endereço Criado");
+            mimeMessageHelper.addInline("image1.png", image1);
+            mimeMessageHelper.addInline("image2.png", image2);
+            mimeMessageHelper.addInline("image3.png", image3);
+            mimeMessageHelper.addInline("image3.png", image3);
             mimeMessageHelper.setText(getTemplateCreate(pessoa, endereco), true);
             emailSender.send(mimeMessageHelper.getMimeMessage());
         } catch (MessagingException | IOException | TemplateException e) {

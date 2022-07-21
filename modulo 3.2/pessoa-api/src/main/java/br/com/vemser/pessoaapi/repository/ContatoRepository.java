@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ContatoRepository extends JpaRepository<ContatoEntity,Integer> {
-
+    
 }
     
 
