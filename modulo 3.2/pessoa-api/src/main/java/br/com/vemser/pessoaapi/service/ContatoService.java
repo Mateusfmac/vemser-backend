@@ -46,12 +46,14 @@ public class ContatoService {
                 .orElseThrow(() -> new RegraDeNegocioException("pessoa nao encontrada"));
     }
     
-    public ContatoDTO update(Integer id, ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException {
+    public ContatoDTO update(Integer id, ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
         ContatoEntity contatoEntityLista = buscaIdContato(id);
-        contatoEntityLista.setTipoContato(contatoAtualizar.getTipoContato());
-        contatoEntityLista.setNumero(contatoAtualizar.getNumero());
-        contatoEntityLista.setDescricao(contatoAtualizar.getDescricao());
-        return objectMapper.convertValue(contatoAtualizar, ContatoDTO.class);
+        contatoEntityLista.setIdPessoa(contatoCreateDTO.getIdPessoa());
+        contatoEntityLista.setTipoContato(contatoCreateDTO.getTipoContato());
+        contatoEntityLista.setNumero(contatoCreateDTO.getNumero());
+        contatoEntityLista.setDescricao(contatoCreateDTO.getDescricao());
+        contatoRepository.save(contatoEntityLista);
+        return objectMapper.convertValue(contatoEntityLista, ContatoDTO.class);
     }
     
     public void delete(Integer id) throws RegraDeNegocioException {

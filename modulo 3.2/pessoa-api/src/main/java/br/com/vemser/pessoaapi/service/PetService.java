@@ -2,6 +2,7 @@ package br.com.vemser.pessoaapi.service;
 
 import br.com.vemser.pessoaapi.dto.PetCreateDTO;
 import br.com.vemser.pessoaapi.dto.PetDTO;
+import br.com.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.vemser.pessoaapi.entity.PetEntity;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.repository.PetRepository;
@@ -36,13 +37,14 @@ public class PetService {
     }
     
     public PetDTO atualizar(Integer id, PetCreateDTO petCreateDTO) throws RegraDeNegocioException {
-        pessoaService.buscaIdPessoa(petCreateDTO.getIdPessoa());
         PetEntity petEntityRecuperado = findById(id);
-        petEntityRecuperado.setIdPet(id);
+        PessoaEntity pessoaRecuparada = pessoaService.buscaIdPessoa(petCreateDTO.getIdPessoa());
+        petRepository.save(petEntityRecuperado);
         petEntityRecuperado.setIdPessoa(petCreateDTO.getIdPessoa());
         petEntityRecuperado.setNome(petCreateDTO.getNome());
         petEntityRecuperado.setTipoPet(petCreateDTO.getTipoPet());
-        petRepository.save(petEntityRecuperado);
+        petEntityRecuperado.setPessoa(pessoaRecuparada);
+        pessoaService.salvar(pessoaRecuparada);
         return convertToDTO(petEntityRecuperado);
     }
     
