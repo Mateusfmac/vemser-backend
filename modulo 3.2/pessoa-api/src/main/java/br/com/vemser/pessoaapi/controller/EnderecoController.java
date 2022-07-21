@@ -2,7 +2,9 @@ package br.com.vemser.pessoaapi.controller;
 
 import br.com.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.vemser.pessoaapi.dto.EnderecoDTO;
+import br.com.vemser.pessoaapi.entity.EnderecoEntity;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
+import br.com.vemser.pessoaapi.repository.EnderecoRepository;
 import br.com.vemser.pessoaapi.service.EnderecoService;
 import freemarker.template.TemplateException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,6 +26,8 @@ public class EnderecoController {
     
     @Autowired
     private EnderecoService enderecoService;
+    @Autowired
+    private EnderecoRepository enderecoRepository;
     
     @Operation(summary = "Cria endereço", description = "Cria um endereço no banco caso a pessoa exista")
     @ApiResponses(
@@ -101,4 +105,9 @@ public class EnderecoController {
     public void delete(@PathVariable("idEndereco") Integer id) throws RegraDeNegocioException {
         enderecoService.delete(id);
     }
+    
+    /*@GetMapping("/end-por-idPessoa")
+    public List<EnderecoEntity> enderecoPorIdPessoa(@RequestParam Integer idPessoa) {
+        return enderecoRepository.enderecoPorIdPessoa(idPessoa);
+    }*/
 }

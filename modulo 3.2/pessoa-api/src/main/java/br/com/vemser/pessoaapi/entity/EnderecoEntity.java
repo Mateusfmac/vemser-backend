@@ -39,7 +39,7 @@ public class EnderecoEntity {
     private String pais;
     
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "PESSOA_X_PESSOA_ENDERECO",
     joinColumns = @JoinColumn(name = "ID_endereco"),
     inverseJoinColumns = @JoinColumn(name = "ID_PESSOA")

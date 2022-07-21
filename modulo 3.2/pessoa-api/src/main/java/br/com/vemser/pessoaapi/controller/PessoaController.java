@@ -3,7 +3,6 @@ package br.com.vemser.pessoaapi.controller;
 import br.com.vemser.pessoaapi.config.PropertieReader;
 import br.com.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.vemser.pessoaapi.dto.PessoaDTO;
-import br.com.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.repository.PessoaRepository;
 import br.com.vemser.pessoaapi.service.EmailService;
@@ -16,9 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -124,23 +121,26 @@ public class PessoaController {
     }
     
     //hw2
-    @GetMapping("/pessoaPet")
-    public List<PessoaDTO> listarPessoaPets() {
-        return pessoaService.listarPessoaPets();
+    @GetMapping("/pet-Pessoa/pessoa")
+    public List<PessoaDTO> listarPessoaPets(@RequestParam(required = false) Integer id) {
+        
+        return pessoaService.listarPessoaPets(id);
     }
     
-    @GetMapping("/pessoEndereco")
-    public List<PessoaDTO> listarPessoaEndereco() {
-        return pessoaService.listarPessoaEndereco();
+    @GetMapping("/endereco-Pessoa/pessoa")
+    public List<PessoaDTO> listarPessoaEndereco(@RequestParam(required = false) Integer id) {
+        return pessoaService.listarPessoaEndereco(id);
     }
     
-    @GetMapping("/pessoaContato")
-    public List<PessoaDTO> listarPessoaContato() {
-        return pessoaService.listarPessoaContato();
+    @GetMapping("/contato-Pessoa/pessoa")
+    public List<PessoaDTO> listarPessoaContato(@RequestParam(required = false) Integer id) {
+        return pessoaService.listarPessoaContato(id);
     }
+    
+    
     
     //exercicios
-    @GetMapping("/{nome}")
+   /* @GetMapping("/{nome}")
     public ResponseEntity<PessoaEntity> buscarNomePessoa(@PathVariable("nome") String nome) throws RegraDeNegocioException {
         return new ResponseEntity(pessoaRepository.findByNomeContainsIgnoreCase(nome), HttpStatus.OK);
     }
@@ -148,7 +148,7 @@ public class PessoaController {
     @GetMapping("/cpf")
     public ResponseEntity<PessoaEntity> buscarCpfPessoa(@RequestParam("cpf") String cpf) throws RegraDeNegocioException {
         return new ResponseEntity(pessoaRepository.findByCpf(cpf), HttpStatus.OK);
-    }
+    }*/
     
    /* @GetMapping("dataNascimento")
     public ResponseEntity<PessoaEntity> buscarDataNascEntre(@RequestParam("dataNascimento") Date inicio, Date fim) throws RegraDeNegocioException{
