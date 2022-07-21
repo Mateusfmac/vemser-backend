@@ -3,6 +3,7 @@ package br.com.vemser.pessoaapi.controller;
 import br.com.vemser.pessoaapi.config.PropertieReader;
 import br.com.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.vemser.pessoaapi.dto.RelatorioPessoaDTO;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.repository.PessoaRepository;
 import br.com.vemser.pessoaapi.service.EmailService;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -137,6 +139,15 @@ public class PessoaController {
         return pessoaService.listarPessoaContato(id);
     }
     
+    @GetMapping("/pessoaTudo")
+    public List<PessoaDTO> tudoJuntoEMisturado(@RequestParam(required = false) Integer id) {
+        return pessoaService.tudoJuntoEMisturado(id);
+    }
+    
+    @GetMapping("/relatorioPessoa")
+    public List<RelatorioPessoaDTO> relatorioPessoa(@RequestParam Integer idPessoa) {
+        return pessoaService.relatorioPessoa(idPessoa);
+    }
     
     
     //exercicios

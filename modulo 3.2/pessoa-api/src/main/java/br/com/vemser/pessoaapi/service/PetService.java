@@ -37,15 +37,20 @@ public class PetService {
     }
     
     public PetDTO atualizar(Integer id, PetCreateDTO petCreateDTO) throws RegraDeNegocioException {
+        //exemplo da correção na aula
         PetEntity petEntityRecuperado = findById(id);
-        PessoaEntity pessoaRecuparada = pessoaService.buscaIdPessoa(petCreateDTO.getIdPessoa());
-        petRepository.save(petEntityRecuperado);
-        petEntityRecuperado.setIdPessoa(petCreateDTO.getIdPessoa());
+        PessoaEntity pessoaRecuparada = petEntityRecuperado.getPessoa();
+        pessoaRecuparada.setPet(null);
+        PessoaEntity pessoaEntity = pessoaService.buscaIdPessoa(petCreateDTO.getIdPessoa());
         petEntityRecuperado.setNome(petCreateDTO.getNome());
         petEntityRecuperado.setTipoPet(petCreateDTO.getTipoPet());
         petEntityRecuperado.setPessoa(pessoaRecuparada);
+        pessoaEntity.setPet(petEntityRecuperado);
         pessoaService.salvar(pessoaRecuparada);
-        return convertToDTO(petEntityRecuperado);
+        if (!pessoaEntity.getIdPessoa().equals(pessoaRecuparada.getIdPessoa())) {
+            pessoaService.salvar(pessoaRecuparada);
+        }
+        return convertToDTO(petRepository.save(petEntityRecuperado));
     }
     
     public void deletar(Integer id) throws RegraDeNegocioException {
@@ -53,11 +58,12 @@ public class PetService {
         petRepository.delete(petEntity);
     }
     
-    public PetEntity convertToEntity (PetCreateDTO petCreateDTO) {
+    public PetEntity convertToEntity(PetCreateDTO petCreateDTO) {
         PetEntity petEntity = objectMapper.convertValue(petCreateDTO, PetEntity.class);
         return petEntity;
     }
-    public PetDTO convertToDTO (PetEntity petEntity){
+    
+    public PetDTO convertToDTO(PetEntity petEntity) {
         PetDTO petDTO = objectMapper.convertValue(petEntity, PetDTO.class);
         return petDTO;
     }

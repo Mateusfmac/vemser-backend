@@ -3,9 +3,9 @@ package br.com.vemser.pessoaapi.entity;
 import java.util.Arrays;
 
 public enum TipoPet {
-    COBRA(0),
+    GUAXINIM(0),
     CACHORRO(1),
-    GALINHA(2);
+    GATO(2);
     
     private Integer tipo;
     
