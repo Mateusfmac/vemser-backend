@@ -148,23 +148,33 @@ public class PessoaService {
     }
     
     public List<PessoaDTO> tudoJuntoEMisturado(Integer id) {
-        return pessoaRepository.findById(id)
-                .stream()
-                .map(pessoaEntity -> {
-                    PessoaDTO pessoaDTO = convertToDTO(pessoaEntity);
-                    pessoaDTO.setEnderecoDTOList(pessoaEntity.getEnderecos()
-                            .stream()
-                            .map(enderecoEntity -> objectMapper.convertValue(enderecoEntity, EnderecoDTO.class))
-                            .toList());
-                    pessoaDTO.setContatoDTOList(pessoaEntity.getContatos()
-                            .stream()
-                            .map(contatoEntity ->
-                                    objectMapper.convertValue(contatoEntity, ContatoDTO.class))
-                            .toList());
-                    pessoaDTO.setPetDTO(
-                            objectMapper.convertValue(pessoaEntity.getPet(), PetDTO.class));
-                    return pessoaDTO;
-                }).toList();
+        if (id == null) {
+            return pessoaRepository.findAll().stream().map(pessoaEntity -> {
+                PessoaDTO pessoaDTO = convertToDTO(pessoaEntity);
+                pessoaDTO.setContatoDTOList(pessoaEntity.getContatos().stream().map(contatoEntity -> objectMapper.convertValue(contatoEntity, ContatoDTO.class)).toList());
+                pessoaDTO.setEnderecoDTOList(pessoaEntity.getEnderecos().stream().map(enderecoEntity -> objectMapper.convertValue(enderecoEntity, EnderecoDTO.class)).toList());
+                pessoaDTO.setPetDTO(objectMapper.convertValue(pessoaEntity.getPet(), PetDTO.class));
+                return pessoaDTO;
+            }).toList();
+        } else {
+            return pessoaRepository.findById(id)
+                    .stream()
+                    .map(pessoaEntity -> {
+                        PessoaDTO pessoaDTO = convertToDTO(pessoaEntity);
+                        pessoaDTO.setEnderecoDTOList(pessoaEntity.getEnderecos()
+                                .stream()
+                                .map(enderecoEntity -> objectMapper.convertValue(enderecoEntity, EnderecoDTO.class))
+                                .toList());
+                        pessoaDTO.setContatoDTOList(pessoaEntity.getContatos()
+                                .stream()
+                                .map(contatoEntity ->
+                                        objectMapper.convertValue(contatoEntity, ContatoDTO.class))
+                                .toList());
+                        pessoaDTO.setPetDTO(
+                                objectMapper.convertValue(pessoaEntity.getPet(), PetDTO.class));
+                        return pessoaDTO;
+                    }).toList();
+        }
     }
     
     public List<RelatorioPessoaDTO> relatorioPessoa(Integer idPessoa) {
