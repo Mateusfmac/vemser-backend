@@ -18,7 +18,7 @@ import java.util.List;
 @Validated
 public class PetController {
     @Autowired
-    PetService petService;
+   private PetService petService;
     
     @PostMapping
     public ResponseEntity<PetDTO> criar(@RequestBody @Valid PetCreateDTO petCreateDTO) throws RegraDeNegocioException {

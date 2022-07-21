@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class PetService {
     @Autowired
-    ObjectMapper objectMapper;
+   private ObjectMapper objectMapper;
     @Autowired
-    PetRepository petRepository;
+    private PetRepository petRepository;
     @Autowired
-    PessoaService pessoaService;
+    private PessoaService pessoaService;
     
     public PetDTO criar(PetCreateDTO petCreateDTO) throws RegraDeNegocioException {
         PetEntity petEntity = convertToEntity(petCreateDTO);
