@@ -148,21 +148,4 @@ public class PessoaController {
     public List<RelatorioPessoaDTO> relatorioPessoa(@RequestParam Integer idPessoa) {
         return pessoaService.relatorioPessoa(idPessoa);
     }
-    
-    
-    //exercicios
-   /* @GetMapping("/{nome}")
-    public ResponseEntity<PessoaEntity> buscarNomePessoa(@PathVariable("nome") String nome) throws RegraDeNegocioException {
-        return new ResponseEntity(pessoaRepository.findByNomeContainsIgnoreCase(nome), HttpStatus.OK);
-    }
-    
-    @GetMapping("/cpf")
-    public ResponseEntity<PessoaEntity> buscarCpfPessoa(@RequestParam("cpf") String cpf) throws RegraDeNegocioException {
-        return new ResponseEntity(pessoaRepository.findByCpf(cpf), HttpStatus.OK);
-    }*/
-    
-   /* @GetMapping("dataNascimento")
-    public ResponseEntity<PessoaEntity> buscarDataNascEntre(@RequestParam("dataNascimento") Date inicio, Date fim) throws RegraDeNegocioException{
-        return new ResponseEntity(pessoaRepository.findByNascimentoBetween(inicio, fim), HttpStatus.OK);
-    }*/
 }

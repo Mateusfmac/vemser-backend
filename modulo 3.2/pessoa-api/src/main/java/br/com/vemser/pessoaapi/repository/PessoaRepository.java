@@ -17,7 +17,7 @@ public interface PessoaRepository extends JpaRepository<PessoaEntity, Integer> {
     
     PessoaEntity findByCpf(String cpf);
     
-    @Query(value = "select new br.com.vemser.pessoaapi.dto.RelatorioPessoaDTO(" +
+    @Query(value = " select new br.com.vemser.pessoaapi.dto.RelatorioPessoaDTO( " +
             "p.idPessoa, " +
             "p.nome, " +
             "p.email, " +

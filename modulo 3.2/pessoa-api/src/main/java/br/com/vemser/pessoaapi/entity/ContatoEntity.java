@@ -2,6 +2,7 @@ package br.com.vemser.pessoaapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+
 import java.util.Set;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class ContatoEntity {
     
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_PESSOA", referencedColumnName = "ID_PESSOA")
+    @JoinColumn(name = "ID_PESSOA",
+            referencedColumnName = "ID_PESSOA")
     private PessoaEntity pessoa;
 }

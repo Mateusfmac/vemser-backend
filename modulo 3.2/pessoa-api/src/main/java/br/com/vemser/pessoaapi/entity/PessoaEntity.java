@@ -29,7 +29,7 @@ public class PessoaEntity {
     private String email;
     
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "ID_PET", referencedColumnName = "ID_PET")
     private PetEntity pet;
     
