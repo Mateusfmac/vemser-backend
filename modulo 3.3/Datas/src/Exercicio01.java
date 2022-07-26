@@ -12,11 +12,11 @@ public class Exercicio01 {
         
         System.out.println("Digite a data do seu aniversario no formato dd/mm/yyyy: ");
         String aniversario = scanner.nextLine();
-        LocalDate foratarData = LocalDate.parse(aniversario, DateTimeFormatter.ofPattern("dd/MM/yyyy")).withYear(dataAtual.getYear());
+        LocalDate formatarData = LocalDate.parse(aniversario, DateTimeFormatter.ofPattern("dd/MM/yyyy")).withYear(dataAtual.getYear());
+        System.out.println(formatarData);
+        Period periodo = Period.between(dataAtual, formatarData.plusYears(1));
     
-        Period periodo = Period.between(dataAtual, foratarData.plusYears(1));
-    
-        System.out.println("Faltam " + periodo.getMonths() + " meses e " + periodo.getDays() +  " dias até seu aniversario ");
+        System.out.println("Faltam " + periodo.getMonths() + " meses e " + periodo.getDays() +  " dias para o seu aniversario ");
     
     }
 }

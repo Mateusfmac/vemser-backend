@@ -4,27 +4,28 @@ import java.time.temporal.ChronoUnit;
 public class Exercicio04 {
     public static void main(String[] args) {
         LocalDateTime dataEvento = LocalDateTime.of(2024, 9, 14, 18, 30);
-        ZoneId londres = ZoneId.of("Europe/London");
-        ZonedDateTime zoned = ZonedDateTime.of(dataEvento, londres);
+        ZoneId idLondres = ZoneId.of("Europe/London");
+        ZonedDateTime zoned = ZonedDateTime.of(dataEvento, idLondres);
     
-        LocalDateTime datAtual = LocalDateTime.now();
+        LocalDateTime dataAtual = LocalDateTime.now();
     
-        long anos = datAtual.until(zoned, ChronoUnit.YEARS);
-        datAtual = datAtual.plusYears(anos);
+        long anos = dataAtual.until(zoned, ChronoUnit.YEARS);
+        dataAtual = dataAtual.plusYears(anos);
     
-        long meses = datAtual.until(zoned, ChronoUnit.MONTHS);
-        datAtual = datAtual.plusMonths(meses);
+        long meses = dataAtual.until(zoned, ChronoUnit.MONTHS);
+        dataAtual = dataAtual.plusMonths(meses);
     
-        long dias = datAtual.until(zoned, ChronoUnit.DAYS);
-        datAtual = datAtual.plusDays(dias);
+        long dias = dataAtual.until(zoned, ChronoUnit.DAYS);
+        dataAtual = dataAtual.plusDays(dias);
     
-        long horas = datAtual.until(zoned, ChronoUnit.HOURS);
-        datAtual = datAtual.plusHours(horas);
+        long horas = dataAtual.until(zoned, ChronoUnit.HOURS);
+        dataAtual = dataAtual.plusHours(horas);
     
-        long minutos = datAtual.until(zoned, ChronoUnit.MINUTES);
-        datAtual = datAtual.plusMinutes(minutos);
+        long minutos = dataAtual.until(zoned, ChronoUnit.MINUTES);
+        dataAtual = dataAtual.plusMinutes(minutos);
     
-        long segundos = datAtual.until(zoned, ChronoUnit.SECONDS);
+        long segundos = dataAtual.until(zoned, ChronoUnit.SECONDS);
+        dataAtual = dataAtual.plusSeconds(segundos);
         
         System.out.println(anos + " Anos");
         System.out.println(meses + " Meses");
