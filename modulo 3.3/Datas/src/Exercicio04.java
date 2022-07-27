@@ -6,7 +6,6 @@ public class Exercicio04 {
         LocalDateTime dataEvento = LocalDateTime.of(2024, 9, 14, 18, 30);
         ZoneId idLondres = ZoneId.of("Europe/London");
         ZonedDateTime zoned = ZonedDateTime.of(dataEvento, idLondres);
-    
         LocalDateTime dataAtual = LocalDateTime.now();
     
         long anos = dataAtual.until(zoned, ChronoUnit.YEARS);

@@ -15,7 +15,7 @@ public class Exercicio02 {
         
         Period period = Period.between(primeriaData, segundaData);
     
-        System.out.println("a diferença em dias eh de " + period.getDays() + ", de meses eh de " + period.getMonths() + ", e de anos eh de " + period.getYears());
+        System.out.println("a diferenca em dias eh de " + period.getDays() + ", de meses eh de " + period.getMonths() + ", e de anos eh de " + period.getYears());
     }
     
     
