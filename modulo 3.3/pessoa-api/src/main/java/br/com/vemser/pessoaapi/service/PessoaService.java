@@ -102,14 +102,14 @@ public class PessoaService {
             return pessoaRepository.findById(id)
                     .stream()
                     .map(pessoaEntity -> {
-                PessoaDTO pessoaDTO = convertToDTO(pessoaEntity);
-                pessoaDTO.setContatoDTOList(pessoaEntity.getContatos()
-                        .stream()
-                        .map(contatoEntity ->
-                                objectMapper.convertValue(contatoEntity, ContatoDTO.class))
-                        .toList());
-                return pessoaDTO;
-            }).toList();
+                        PessoaDTO pessoaDTO = convertToDTO(pessoaEntity);
+                        pessoaDTO.setContatoDTOList(pessoaEntity.getContatos()
+                                .stream()
+                                .map(contatoEntity ->
+                                        objectMapper.convertValue(contatoEntity, ContatoDTO.class))
+                                .toList());
+                        return pessoaDTO;
+                    }).toList();
         } else {
             return pessoaRepository.findAll()
                     .stream()

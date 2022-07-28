@@ -3,11 +3,17 @@ package br.com.vemser.pessoaapi.security;
 import br.com.vemser.pessoaapi.entity.UsuarioEntity;
 import br.com.vemser.pessoaapi.service.UsuarioService;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import java.util.Base64;
-import java.util.Optional;
+import java.util.Collections;
+import java.util.Date;
+
 
 @Service
 @RequiredArgsConstructor
@@ -15,21 +21,43 @@ public class TokenService {
     
     private final UsuarioService usuarioService;
     
+    @Value("${jwt.secret}")
+    private String secret;
+    
+    @Value("${jwt.expiration}")
+    private String expiration;
+    
     public String getToken(UsuarioEntity usuarioEntity) {
-        String tokenUser = usuarioEntity.getLogin() + ";" + usuarioEntity.getSenha();
-        String token = Base64.getEncoder().encodeToString(tokenUser.getBytes());
-        return token;
+        Date now = new Date();
+        Date exp = new Date(now.getTime() + Long.valueOf(expiration));
+        
+        String token = Jwts.builder()
+                .setIssuer("pessoa-api")
+                .claim(Claims.ID, usuarioEntity.getIdUsuario())
+                .setIssuedAt(now)
+                .setExpiration(exp)
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
+        return TokenAuthenticationFilter.BEARER + token;
     }
     
-    public Optional<UsuarioEntity> validaToken(String token) {
+    public UsernamePasswordAuthenticationToken validaToken(String token) {
         if (token == null) {
-            return Optional.empty();
+            return null;
         }
-        byte[] decodeByte = Base64.getUrlDecoder().decode(token);
-        String decoded = new String(decodeByte);
-        String[] split = decoded.split(";");
-        Optional<UsuarioEntity> optionalUsuario = usuarioService.findByLoginAndSenha(split[0], split[1]);
-        return optionalUsuario;
+        
+        Claims body = Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody();
+        
+        Integer idUsuario = body.get(Claims.ID, Integer.class);
+        if (idUsuario != null) {
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                    new UsernamePasswordAuthenticationToken(idUsuario, null, Collections.emptyList());
+            return usernamePasswordAuthenticationToken;
+        }
+        return null;
     }
     
 }
