@@ -2,10 +2,12 @@ package br.com.vemser.pessoaapi.service;
 
 import br.com.vemser.pessoaapi.dto.LoginDTO;
 import br.com.vemser.pessoaapi.entity.UsuarioEntity;
+import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.repository.UsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.java.Log;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,14 +38,22 @@ public class UsuarioService {
         usuarioEntity.setLogin(loginDTO.getLogin());
         usuarioEntity.setSenha(bCryptPasswordEncoder.encode(loginDTO.getSenha()));
         usuarioRepository.save(usuarioEntity);
+        //NUNCA DEVE RETORNAR A SENHA / CRIAR UM DTO SEM A SENHA;
         
         return objectMapper.convertValue(usuarioEntity, LoginDTO.class);
     }
     
+    public Integer getIdLoggedUser() {
+        Integer findUserId = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return findUserId;
+    }
+    
+    public Optional<UsuarioEntity> getLoggedUser() throws RegraDeNegocioException {
+        return findById(getIdLoggedUser());
+    }
     
     public Optional<UsuarioEntity> findById(Integer idUsuario) {
         return usuarioRepository.findById(idUsuario);
     }
-    
     
 }

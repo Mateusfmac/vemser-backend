@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeHttpRequests((authz) ->//autoriza as requisicoes abaixo
                         authz
-                                .antMatchers("/", "/auth", "/auth/create").permitAll()
+                                .antMatchers("/", "/auth", "/auth/create").permitAll() //executa o filtro e permite os end point selecionado
                                 .anyRequest().authenticated() //exige autenticacao pra tudo e executa o filtro do token
                 );
         http.addFilterBefore(new TokenAuthenticationFilter(tokenService), UsernamePasswordAuthenticationFilter.class); //executa o filtro antes da auth

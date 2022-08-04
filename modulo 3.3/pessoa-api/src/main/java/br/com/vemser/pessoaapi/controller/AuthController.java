@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Validated
-@RequestMapping(value = "/auth", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+@RequestMapping("/auth")
 @RestController
 public class AuthController {
     
@@ -34,7 +34,7 @@ public class AuthController {
                         loginDTO.getLogin(),
                         loginDTO.getSenha()
                 );
-        
+        //autentica
         Authentication authentication = authenticationManager
                 .authenticate(usernamePasswordAuthenticationToken);
         
@@ -48,6 +48,11 @@ public class AuthController {
     @PostMapping("/create")
     public LoginDTO create(@RequestBody @Valid LoginDTO loginDTO) {
         return usuarioService.createUser(loginDTO);
+    }
+    
+    @GetMapping("/usuario-logado")
+    public Optional<UsuarioEntity> getLoggedUser() throws RegraDeNegocioException {
+        return usuarioService.getLoggedUser();
     }
     
 }
