@@ -13,6 +13,8 @@ public enum Enviar {
     JEAN("chat-jean"),
     MACHADO("chat-machado"),
     PAULO("chat-paulo"),
+    CLEBER("chat-cleber"),
+    CLEBSON("chat-clebson"),
     RAFAEL("chat-rafael"),
     RODRIGO("chat-rodrigo"),
     WILLIAN("chat-willian");
